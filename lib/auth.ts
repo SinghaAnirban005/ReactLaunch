@@ -70,13 +70,10 @@ export const authOptions: NextAuthOptions = {
   }
 }
 
-// Export the configured NextAuth handler
 const handler = NextAuth(authOptions)
 
-// Export for API routes
 export { handler as GET, handler as POST }
 
-// Export auth functions for server components
 export const auth = () => NextAuth(authOptions)
 export const signIn = () => NextAuth(authOptions)
 export const signOut = () => NextAuth(authOptions)
