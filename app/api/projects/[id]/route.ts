@@ -1,34 +1,43 @@
-import { useSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth"; // adjust if needed
+import { NextRequest } from "next/server";
 
-export async function GET(
-    request: Request,
-    { params }: { params: {id: string} }
-) {
-    try {
-        const session = useSession()
-        const user = session.data?.user
+export async function GET(request: NextRequest) {
+  try {
+    const session = await auth();
+    const user = session?.user;
 
-        if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const url = new URL(request.url);
+    const id = url.pathname.split("/").pop(); // or use regex if needed
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing project ID" }, { status: 400 });
     }
 
     const project = await prisma.project.findUnique({
+      where: {
+        id,
         //@ts-ignore
-        where: { id: params.id, userId: user.id }
-    })
+        userId: user.id
+      }
+    });
 
     if (!project) {
-      return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+      return NextResponse.json({ error: "Project not found" }, { status: 404 });
     }
 
-    return NextResponse.json(project, {status: 200})
+    return NextResponse.json(project, { status: 200 });
 
-    } catch (error) {
+  } catch (error) {
+    console.error(error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
-    }
+  }
 }

@@ -1,11 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { useSession } from "next-auth/react";
 import { NextResponse } from "next/server";
+import { triggerBuild } from "@/lib/builder";
+import { auth } from "@/lib/auth";
 
 export async function POST(request: Request) {
-    const session = useSession()
+    const session = await auth()
 
-    const user = session.data?.user
+    const user = session.user
     if(!user){
         return NextResponse.json(
             {error: 'Unauthorized'}, {status: 401}
@@ -21,12 +23,11 @@ export async function POST(request: Request) {
                 githubRepo: githubRepo,
                 subdomain: `${name.toLowerCase().replace(/\s+/g, '-')}-${Date.now().toString(36)}`,
                 status: "Pending",
-                //@ts-ignore
                 userId: user.id
             }
         })
     
-        // i need to trigger the build here
+        await triggerBuild(project.id)
         
         return NextResponse.json(project, { status: 200 })
     } catch (error) {
@@ -39,15 +40,14 @@ export async function POST(request: Request) {
 
 export async function GET() {
     try {
-        const session = useSession()
-        const user = await session.data?.user
+        const session = await auth()
 
+        const user = session.user
         if(!user) {
             return NextResponse.json({error: 'Unauthorized'}, {status: 401})
         } 
 
         const projects = await prisma.project.findMany({
-            //@ts-ignore
             where: { userId: user.id }
         })
 
