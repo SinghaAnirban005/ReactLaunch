@@ -108,8 +108,8 @@ export default function Dashboard() {
           </p>
 
           <div className="mt-4 p-3 bg-gray-100 rounded text-sm">
-            <p><strong>Welcome:</strong> {session?.user?.email}</p>
-            <p><strong>Status:</strong> {status}</p>
+            <p className='text-gray-700'><strong>Welcome:</strong> {session?.user?.email}</p>
+            <p className='text-gray-700'><strong>Status:</strong> {status}</p>
             <button
               onClick={handleSignOut}
               className="mt-2 text-red-600 hover:text-red-800 underline"
@@ -130,7 +130,7 @@ export default function Dashboard() {
               required
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border text-gray-600 border-gray-300 rounded-md placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="my-awesome-project"
             />
           </div>
@@ -145,7 +145,7 @@ export default function Dashboard() {
               required
               value={githubRepo}
               onChange={(e) => setGithubRepo(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full px-3 py-2 border text-gray-600 border-gray-300 placeholder-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="https://github.com/username/repo"
             />
           </div>
