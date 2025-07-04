@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { useSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 import { triggerBuild } from "@/lib/builder";
 import { auth } from "@/lib/auth";
