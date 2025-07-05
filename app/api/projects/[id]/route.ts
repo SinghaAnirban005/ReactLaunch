@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth"; // adjust if needed
+import { auth } from "@/lib/auth";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     }
 
     const url = new URL(request.url);
-    const id = url.pathname.split("/").pop(); // or use regex if needed
+    const id = url.pathname.split("/").pop();
 
     if (!id) {
       return NextResponse.json({ error: "Missing project ID" }, { status: 400 });

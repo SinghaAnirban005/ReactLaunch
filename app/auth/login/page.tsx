@@ -12,7 +12,6 @@ export default function LoginPage() {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard");
@@ -34,7 +33,6 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Invalid email or password");
       } else if (result?.ok) {
-        // Redirect will be handled by useEffect when session updates
         router.push("/dashboard");
       }
     } catch (err) {
@@ -44,7 +42,6 @@ export default function LoginPage() {
     }
   };
 
-  // Show loading if checking session
   if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -56,7 +53,6 @@ export default function LoginPage() {
     );
   }
 
-  // Don't show login form if already authenticated
   if (status === "authenticated") {
     return null;
   }

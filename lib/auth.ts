@@ -4,6 +4,7 @@ import { prisma } from "./prisma"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GithubProvider from "next-auth/providers/github"
 import bcrypt from "bcryptjs"
+import { getServerSession } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -60,6 +61,8 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         // @ts-ignore
         session.user.id = token.id as string
+        //@ts-ignore
+        session.accessToken = token.accessToken
       }
       return session
     }
@@ -74,6 +77,10 @@ const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }
 
-export const auth = () => NextAuth(authOptions)
+// export const auth = () => NextAuth(authOptions)
 export const signIn = () => NextAuth(authOptions)
 export const signOut = () => NextAuth(authOptions)
+
+export function auth() {
+  return getServerSession(authOptions);
+}

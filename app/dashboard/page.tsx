@@ -63,7 +63,9 @@ export default function Dashboard() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          //@ts-ignore
         },
+        credentials: 'include',
         body: JSON.stringify({
           name: projectName,
           githubRepo,

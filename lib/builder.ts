@@ -35,10 +35,20 @@ export async function triggerBuild(projectId: string) {
         // Install dependencies
         console.log('Installing dependencies...');
         await execPromise('npm install', { cwd: projectBuildDir });
+
+        const packageJson = JSON.parse(fs.readFileSync(path.join(projectBuildDir, 'package.json'), 'utf-8'));
+        console.log('Build script:', packageJson.scripts?.build);
         
         // Build project
         console.log('Building project...');
-        await execPromise('npm run build', { cwd: projectBuildDir });
+        try {
+            const { stdout, stderr } = await execPromise('npm run build', { cwd: projectBuildDir });
+            console.log('Build stdout:', stdout);
+            console.error('Build stderr:', stderr);
+        } catch (error: any) {
+            console.error('Build failed with:', error.stdout || '', error.stderr || '', error.message);
+            throw error;
+        }
 
         // Copy build artifacts
         console.log('Copying build artifacts...');
@@ -71,15 +81,13 @@ export async function triggerBuild(projectId: string) {
     }
 }
 
-// Builder service entry point
 export async function startBuilder() {
     console.log('Builder service started');
-    
-    // Add any continuous monitoring logic here
-    // For example, polling for projects with status 'queued'
     
     process.on('SIGTERM', async () => {
         await prisma.$disconnect();
         process.exit(0);
     });
 }
+
+startBuilder();
