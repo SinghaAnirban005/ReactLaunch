@@ -33,11 +33,21 @@ export async function triggerBuild(projectId: string) {
         await execPromise(`git clone ${project.githubRepo} ${projectBuildDir}`);
         
         // Install dependencies
+        console.log(projectBuildDir)
         console.log('Installing dependencies...');
-        await execPromise('npm install', { cwd: projectBuildDir });
+        const { stdout, stderr } = await execPromise('npm install --legacy-peer-deps --no-audit --loglevel warn', {
+  cwd: projectBuildDir,
+  env: {
+    ...process.env,
+    NODE_ENV: 'development',
+  },
+});;
+console.log(stdout);
+console.error(stderr);
 
-        const packageJson = JSON.parse(fs.readFileSync(path.join(projectBuildDir, 'package.json'), 'utf-8'));
-        console.log('Build script:', packageJson.scripts?.build);
+        const pkgJson = fs.readFileSync(path.join(projectBuildDir, 'package.json'), 'utf-8');
+console.log("=== package.json ===");
+console.log(pkgJson);
         
         // Build project
         console.log('Building project...');
@@ -52,7 +62,7 @@ export async function triggerBuild(projectId: string) {
 
         // Copy build artifacts
         console.log('Copying build artifacts...');
-        const buildOutputDir = path.join(projectBuildDir, 'build');
+        const buildOutputDir = path.join(projectBuildDir, 'dist');
         await execPromise(`cp -r ${buildOutputDir}/* ${projectDeployDir}/`);
 
         // Update project status

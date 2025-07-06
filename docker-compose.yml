@@ -18,10 +18,10 @@ services:
   builder:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.builder
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/vercelclone?schema=public
-    command: npm run builder
+      - NODE_ENV=development
     volumes:
       - ./builds:/app/builds
       - ./deployments:/app/deployments
