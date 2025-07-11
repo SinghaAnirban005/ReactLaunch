@@ -18,20 +18,20 @@ interface projectProps {
 export default function Projects() {
   const [userProjects, setUserProjects] = useState<projectProps[]>([]);
 
-  useEffect(() => {
-    const getUserProjects = async () => {
-      const projects = await fetch('/api/projects', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
+        useEffect(() => {
+            const getUserProjects = async () => {
+            const projects = await fetch('/api/projects', {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
 
-      const data = await projects.json();
+            const data = await projects.json();
 
-      setUserProjects(data);
-    };
+            setUserProjects(data);
+            };
 
     try {
       getUserProjects();
