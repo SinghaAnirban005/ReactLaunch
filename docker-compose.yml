@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/vercelclone?schema=public
       - NEXTAUTH_URL=http://localhost
@@ -37,7 +37,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=vercelclone
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
@@ -45,7 +45,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - '80:80'
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./deployments:/usr/share/nginx/html

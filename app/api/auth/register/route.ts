@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request: Request) {
   try {
@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     if (!name || !email || !password) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: 'All fields are required' },
         { status: 400 }
       );
     }
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: "Email already in use" },
+        { error: 'Email already in use' },
         { status: 400 }
       );
     }
@@ -35,13 +35,13 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: "User created successfully" },
+      { message: 'User created successfully' },
       { status: 201 }
     );
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

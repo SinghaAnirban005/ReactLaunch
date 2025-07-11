@@ -9,11 +9,6 @@
     "rootDir": ".",
     "skipLibCheck": true
   },
-  "include": [
-    "lib/builder.ts",
-    "lib/prisma.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["lib/builder.ts", "lib/prisma.ts"],
+  "exclude": ["node_modules"]
 }

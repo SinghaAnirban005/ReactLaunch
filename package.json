@@ -7,7 +7,9 @@
     "build": "prisma generate && next build --no-lint && tsc -p tsconfig.builder.json",
     "start": "next start",
     "lint": "next lint",
-    "builder": "node ./dist/lib/builder.js"
+    "builder": "node ./dist/lib/builder.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

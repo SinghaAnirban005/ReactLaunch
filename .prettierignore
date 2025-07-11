@@ -1,0 +1,7 @@
+.next
+builds
+deployments
+dist
+node_modules
+.env
+package-lock.json
