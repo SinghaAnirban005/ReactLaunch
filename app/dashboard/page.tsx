@@ -105,6 +105,7 @@ export default function Dashboard() {
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Project Dashboard</h1>
+          <div onClick={() => router.push('/dashboard/projects')} className="text-lg font-bold text-gray-900">Projects</div>
           <p className="mt-2 text-sm text-gray-600">
             Deploy your React applications
           </p>

@@ -8,12 +8,13 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/vercelclone?schema=public
       - NEXTAUTH_URL=http://localhost
-      - NEXTAUTH_SECRET=your-secret-key
+      - NEXTAUTH_SECRET=sjbkjdbfsdfbk
     volumes:
       - ./builds:/app/builds
       - ./deployments:/app/deployments
     depends_on:
       - postgres
+    restart: unless-stopped
 
   builder:
     build:
@@ -27,6 +28,7 @@ services:
       - ./deployments:/app/deployments
     depends_on:
       - postgres
+    restart: unless-stopped
 
   postgres:
     image: postgres:13
@@ -38,6 +40,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -48,6 +51,7 @@ services:
       - ./deployments:/usr/share/nginx/html
     depends_on:
       - nextjs
+    restart: unless-stopped
 
 volumes:
   postgres-data:

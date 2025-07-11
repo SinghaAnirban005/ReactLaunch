@@ -42,7 +42,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate GitHub repo URL format
     const githubUrlPattern = /^https:\/\/github\.com\/[\w\-\.]+\/[\w\-\.]+\/?$/;
     if (!githubUrlPattern.test(githubRepo)) {
       return NextResponse.json(
