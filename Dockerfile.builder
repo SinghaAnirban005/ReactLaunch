@@ -8,8 +8,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY ./lib ./lib
-COPY ./builds ./builds
-COPY ./deployments ./deployments
 COPY ./prisma ./prisma
 
 RUN npx prisma generate
@@ -17,4 +15,4 @@ RUN npx prisma generate
 COPY ./tsconfig.builder.json ./tsconfig.json
 
 RUN npm install -D ts-node typescript
-CMD ["node", "--max-old-space-size=4096", "node_modules/.bin/ts-node", "lib/builder.ts"]
+CMD ["node", "--max-old-space-size=2096", "node_modules/.bin/ts-node", "lib/builder.ts"]

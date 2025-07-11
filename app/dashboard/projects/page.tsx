@@ -32,7 +32,6 @@ export default function Projects() {
             const data = await projects.json()
 
             setUserProjects(data)
-            console.log(data)
         }
 
         try {
