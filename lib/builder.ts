@@ -24,15 +24,12 @@ export async function triggerBuild(projectId: string) {
     const projectBuildDir = path.join(BUILD_DIR, project.id);
     const projectDeployDir = path.join(DEPLOY_DIR, project.subdomain);
 
-    // Ensure directories exist
     fs.mkdirSync(projectBuildDir, { recursive: true });
     fs.mkdirSync(projectDeployDir, { recursive: true });
 
-    // Clone repository
     console.log(`Cloning repository: ${project.githubRepo}`);
     await execPromise(`git clone ${project.githubRepo} ${projectBuildDir}`);
 
-    // Install dependencies
     console.log(projectBuildDir);
     console.log('Installing dependencies...');
     const { stdout, stderr } = await execPromise(
@@ -55,7 +52,6 @@ export async function triggerBuild(projectId: string) {
     console.log('=== package.json ===');
     console.log(pkgJson);
 
-    // Build project
     console.log('Building project...');
     try {
       const { stdout, stderr } = await execPromise('npm run build', {
@@ -73,12 +69,10 @@ export async function triggerBuild(projectId: string) {
       throw error;
     }
 
-    // Copy build artifacts
     console.log('Copying build artifacts...');
     const buildOutputDir = path.join(projectBuildDir, 'dist');
     await execPromise(`cp -r ${buildOutputDir}/* ${projectDeployDir}/`);
 
-    // Update project status
     await prisma.project.update({
       where: { id: projectId },
       data: {
