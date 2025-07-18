@@ -19,3 +19,4 @@ RUN npm run build
 EXPOSE 3000
 
 CMD ["npm", "start"]
+# Problem is that the migration tries to happen when postgress isn't initialized yet

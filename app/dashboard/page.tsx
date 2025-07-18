@@ -278,12 +278,12 @@ export default function Dashboard() {
                     <p className='mt-2 text-sm'>
                       Your project will be available at:{' '}
                       <a
-                        href={`http://${deploymentStatus.subdomain}.localhost`}
+                        href={`http://${deploymentStatus.subdomain}.react-launch.duckdns.org`}
                         target='_blank'
                         rel='noopener noreferrer'
                         className='text-blue-600 hover:text-blue-800 font-medium underline'
                       >
-                        {deploymentStatus.subdomain}.localhost
+                        {deploymentStatus.subdomain}.react-launch.duckdns.org
                       </a>
                     </p>
                   )}
