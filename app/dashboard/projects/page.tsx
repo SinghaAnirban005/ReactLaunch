@@ -98,12 +98,12 @@ export default function Projects() {
 
                     <div className='col-span-3'>
                       <a
-                        href={`http://${project.subdomain}.localhost`}
+                        href={`http://${project.subdomain}.react-launch.duckdns.org`}
                         target='_blank'
                         rel='noopener noreferrer'
                         className='text-blue-700 hover:text-blue-800 underline decoration-1 underline-offset-2 font-mono text-sm'
                       >
-                        {project.subdomain}.localhost
+                        {project.subdomain}.react-launch.duckdns.org
                       </a>
                     </div>
 
