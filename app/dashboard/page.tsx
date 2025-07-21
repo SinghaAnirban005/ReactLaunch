@@ -208,7 +208,7 @@ export default function Dashboard() {
                     required
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
+                    className='w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                     placeholder='my-awesome-project'
                     disabled={isDeploying}
                   />
@@ -227,7 +227,7 @@ export default function Dashboard() {
                     required
                     value={githubRepo}
                     onChange={(e) => setGithubRepo(e.target.value)}
-                    className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
+                    className='w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'
                     placeholder='https://github.com/username/repo'
                     disabled={isDeploying}
                   />
