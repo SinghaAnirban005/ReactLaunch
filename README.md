@@ -1,6 +1,6 @@
 ## 📽 Demo Video
 
-[![Watch the demo](https://www.loom.com/share/80b0905686c04764881b7d37f2c65f72?sid=9a25c784-ba01-465d-b69d-bd8c4b59426f)
+[!Watch the demo](https://www.loom.com/share/80b0905686c04764881b7d37f2c65f72?sid=9a25c784-ba01-465d-b69d-bd8c4b59426f)
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
