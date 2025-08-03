@@ -13,5 +13,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ReactLaunch
-            git pull
+            git pull origin main
             sudo docker-compose up --build -d
