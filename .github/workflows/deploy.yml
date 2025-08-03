@@ -1,0 +1,17 @@
+name: Deploy to VM
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ReactLaunch
+            git pull
+            sudo docker-compose up --build -d
