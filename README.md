@@ -2,6 +2,7 @@
 
 [Watch the demo](https://www.loom.com/share/80b0905686c04764881b7d37f2c65f72?sid=9a25c784-ba01-465d-b69d-bd8c4b59426f)
 
+<img width="1843" height="960" alt="image" src="https://github.com/user-attachments/assets/39f32837-1923-482c-ae7e-69b07c207e69" />
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
